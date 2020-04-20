@@ -55,7 +55,7 @@ if __name__ == "__main__":
         data_2,
         columns=["Magneettivuon tiheys (mT)", "Hall-jännite (mV)"],
         index=[f"{i}" for i in range(1, len(magnetic_field) + 1)],
-    )
+    ).round(decimals=1)
 
     html_table_2 = data_frame_2.to_html()
 
@@ -85,7 +85,7 @@ if __name__ == "__main__":
         data_4,
         columns=["Lämpotila (°C)", "Hall-jännite (mV)"],
         index=[f"{i}" for i in range(1, len(temperatures) + 1)],
-    ).round(decimals={"Lämpotila (°C)": 0, "Hall-jännite (mV)": 1})
+        ).round(decimals={"Lämpotila (°C)": 0, "Hall-jännite (mV)": 1}).astype({"Lämpotila (°C)": "int32"})
 
     html_table_4 = data_frame_4.to_html()
 
@@ -97,8 +97,8 @@ if __name__ == "__main__":
         [
             "Amprobe 35XP-A",
             "Teslametri",
-            "Hall-moduuli, virat",
-            "Hall-moduuli, jännite",
+            "Hall-moduuli, virrat",
+            "Hall-moduuli, lämpötila",
         ],
         ["0.5% lu + 1 dig", "2% lu", "1 dig", "1 dig",],
     ]
@@ -137,6 +137,6 @@ if __name__ == "__main__":
         f.write(html_table_2)
 
         f.write(
-            "<h3>Mittaus 3: Hall-jännite lämpötilan functiona, magneettikenttä 72,5mT ja ohjausvirta 30mA</h3>"
+            "<h3>Mittaus 3: Hall-jännite lämpötilan funktiona, magneettikenttä 72,5mT ja ohjausvirta 30mA</h3>"
         )
         f.write(html_table_4)
